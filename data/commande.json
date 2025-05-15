@@ -1,0 +1,14 @@
+{
+    "miasin_api": {
+        "path": "C:/laragon/www/miasin_api",
+        "commande": ["php artisan reverb:start", "php artisan queue:work"]
+    },
+    "miasin_web": {
+        "path": "C:/laragon/www/miasin_web",
+        "commande": ["npm run dev", "\"C:/Program Files/Git/git-bash.exe\""]
+    },
+    "miasin_app": {
+        "path": "C:/laragon/www/miasin",
+        "commande": ["ionic serve"]
+    }
+}
