@@ -4,13 +4,13 @@
 - Python 3.x
 - `pip install PyInstaller`
 ## Usage
-1. Create a JSON file named `commande.json` in the `data` directory. The JSON file should contain an array of command strings. For example:
+1. Create a JSON file named `commande.json` in the `data` directory. For example:
 ```json
 {
-  "commands": [
-    "echo Hello World",
-    "dir"
-  ]
+    "project_name": {
+        "path": "C:/laragon/www/my_laravel_project",
+        "commande": ["php artisan reverb:start", "php artisan queue:work", "no_shell\"C:/Program Files/Git/git-bash.exe\""]
+    },
 }
 ```
 2. Run the script using Python:
@@ -23,27 +23,25 @@ python main.py
 ```bash
 python -m PyInstaller --onefile --add-data "data/commande.json;data" main.py
 ```
-## Example
+5. After building, you can find the executable in the `dist` directory. You can run it directly without needing Python installed on the system.
+## Example JSON File
 ```json
 {
-  "commands": [
-    "echo Hello World",
-    "dir"
-  ]
+    "project_name": {
+        "path": "C:/laragon/www/my_laravel_project",
+        "commande": ["php artisan reverb:start", "php artisan queue:work", "no_shell\"C:/Program Files/Git/git-bash.exe\""]
+    },
 }
 ```
-## Output
+## Example Output
 ```
-Hello World
-    Volume in drive C has no label.
-    Volume Serial Number is XXXX-XXXX
-    
-    Directory of C:\Users\YourUsername  
-    2023-10-01  12:00 PM    <DIR>          .
-    2023-10-01  12:00 PM    <DIR>          ..
-    2023-10-01  12:00 PM    <DIR>          data
-    2023-10-01  12:00 PM    <DIR>          main.py
+C:\laragon\www\my_laravel_project>php artisan reverb:start
+Laravel development server started: <http://
+C:\laragon\www\my_laravel_project>php artisan queue:work
+Laravel development server started: <http://
+C:\laragon\www\my_laravel_project>"C:/Program Files/Git/git-bash.exe"
 ```
+
 ## Note
 - Make sure to adjust the commands in the JSON file according to your operating system and requirements.
 - The script captures both standard output and standard error, so any errors will also be printed to the console.
