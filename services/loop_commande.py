@@ -21,7 +21,7 @@ def loopCommande(commande_json_path):
             if not answer in avaible_commande:
                 print("wrong choice")
 
-            if answer == "e":
+            if answer in ["e", "exit", "q", "quit"]:
                 print("good bey!")
                 stop = True
                 break
@@ -35,8 +35,8 @@ def loopCommande(commande_json_path):
 
         except Exception as e:
             print("error: ", e)
-            # stop = True
-            # break
+            stop = True
+            break
 
 
 def lanceAllCommande(commande_json_path):
