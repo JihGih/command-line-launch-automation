@@ -1,8 +1,8 @@
-from services.track_ip import track_ip
+from services.track_ip import get_local_ip
 from services.open_cmd import lance_commande_cmd
 from services.utils import getListCommande, getJsonContent
 
-ip = track_ip()
+ip = get_local_ip()
 
 def loopCommande(commande_json_path): 
     
@@ -26,12 +26,10 @@ def loopCommande(commande_json_path):
                 stop = True
                 break
 
-            if answer == "all":
-                lanceAllCommande(commande_json_path)
-            else:
-                project = list_projects[avaible_commande[answer]]
-                for commande in project["commande"]:
-                    lance_commande_cmd(project["path"], commande)
+
+            project = list_projects[avaible_commande[answer]]
+            for commande in project["commande"]:
+                lance_commande_cmd(project["path"], commande)
 
         except Exception as e:
             print("error: ", e)
