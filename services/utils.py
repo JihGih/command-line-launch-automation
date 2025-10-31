@@ -14,7 +14,7 @@ def getDictionnaryKey(dictionnary):
 def getListCommande(dictionnary):
     avaible_commande = getDictionnaryKey(dictionnary)
     avaible_commande["e"] = "exit"
-    avaible_commande["all"] = "all"
+    # avaible_commande["all"] = "all"
 
     return avaible_commande
 
