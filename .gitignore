@@ -1,3 +1,4 @@
-/build
-/build/main
+/build/*
+/build/main/*
 /dist/*
+/*/__pycache__/*
