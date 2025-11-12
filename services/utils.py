@@ -11,11 +11,23 @@ def getDictionnaryKey(dictionnary):
 
     return dictionnary_label
 
-def getListCommande(dictionnary):
-    avaible_commande = getDictionnaryKey(dictionnary)
-    avaible_commande["e"] = "exit"
-    # avaible_commande["all"] = "all"
+def getListKey(list_data):
+    list_label = {}
 
+    for index, item in enumerate(list_data):
+        list_label[f"{index+1}"] = item
+
+    return list_label
+
+def getListCommande(dictionnary, additional_commande={"e": "exit"}):
+    avaible_commande = {}
+
+    if (isinstance(dictionnary, dict)):
+        avaible_commande = getDictionnaryKey(dictionnary)
+    elif (isinstance(dictionnary, list)):
+        avaible_commande = getListKey(dictionnary)
+
+    avaible_commande = {**avaible_commande, **additional_commande}
     return avaible_commande
 
 def getJsonContent(relative_path):

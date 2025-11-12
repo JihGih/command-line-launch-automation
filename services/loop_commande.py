@@ -8,28 +8,38 @@ def loopCommande(commande_json_path):
     
     list_projects = getJsonContent(commande_json_path)
 
-    avaible_commande = getListCommande(list_projects)
+    main_menu = getListCommande(list_projects)
 
     stop = False
 
     while not stop:
         try:
-            for i in avaible_commande:
-                print(f"{i}: {avaible_commande[i]}")
-
-            answer = input("choose a commande: ")
-            if not answer in avaible_commande:
-                print("wrong choice")
+            answer = printCommandeAndGetAnswer(main_menu)
 
             if answer in ["e", "exit", "q", "quit"]:
                 print("good bey!")
                 stop = True
                 break
 
+            project = list_projects[main_menu[answer]]
+            sub_menu = getListCommande(project["commande"], additional_commande={"b": "back", "e": "exit", "all": "lance all commande"})
+            sub_answer = printCommandeAndGetAnswer(sub_menu)
 
-            project = list_projects[avaible_commande[answer]]
-            for commande in project["commande"]:
-                lance_commande_cmd(project["path"], commande)
+            print("you choose: ", sub_menu[sub_answer])
+            if sub_answer in ["b", "back"]:
+                continue
+            if sub_answer in ["e", "exit", "q", "quit"]:
+                print("good bey!")
+                stop = True
+                break
+            if sub_answer == "all":
+                execute_answer(project["path"], project["commande"])
+            else:
+                execute_answer(project["path"], sub_menu[sub_answer])
+
+            project = None
+            sub_menu = None
+            sub_answer = None
 
         except Exception as e:
             print("error: ", e)
@@ -37,10 +47,21 @@ def loopCommande(commande_json_path):
             break
 
 
-def lanceAllCommande(commande_json_path):
-    list_projects = getJsonContent(commande_json_path)
+def execute_answer(path, commande):
+    if isinstance(commande, list):
+        for cmd in commande:
+            lance_commande_cmd(path, cmd)
+    elif isinstance(commande, str):
+        lance_commande_cmd(path, commande)
 
-    for key in list_projects:
-        project = list_projects[key]
-        for commande in project["commande"]:
-            lance_commande_cmd(project["path"], commande)
+
+def printCommandeAndGetAnswer(avaible_commande):
+    for i in avaible_commande:
+        print(f"{i}: {avaible_commande[i]}")
+
+    answer = input("choose a commande: ")
+
+    if answer not in avaible_commande:
+        print("commande not avaible")
+        return printCommandeAndGetAnswer(avaible_commande)
+    return answer
