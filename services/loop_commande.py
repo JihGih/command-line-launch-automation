@@ -16,26 +16,31 @@ def loopCommande(commande_json_path):
         try:
             answer = printCommandeAndGetAnswer(main_menu)
 
-            if answer in ["e", "exit", "q", "quit"]:
+            if isExit(answer):
                 print("good bey!")
                 stop = True
                 break
 
-            project = list_projects[main_menu[answer]]
-            sub_menu = getListCommande(project["commande"], additional_commande={"b": "back", "e": "exit", "all": "lance all commande"})
-            sub_answer = printCommandeAndGetAnswer(sub_menu)
+            back = False
+            while not back:
+                
+                project = list_projects[main_menu[answer]]
+                sub_menu = getListCommande(project["commande"], additional_commande={"b": "back", "e": "exit", "all": "lance all commande"})
+                sub_answer = printCommandeAndGetAnswer(sub_menu)
 
-            print("you choose: ", sub_menu[sub_answer])
-            if sub_answer in ["b", "back"]:
-                continue
-            if sub_answer in ["e", "exit", "q", "quit"]:
-                print("good bey!")
-                stop = True
-                break
-            if sub_answer == "all":
-                execute_answer(project["path"], project["commande"])
-            else:
-                execute_answer(project["path"], sub_menu[sub_answer])
+                print("you choose: ", sub_menu[sub_answer])
+
+                if isExit(sub_answer):
+                    print("good bey!")
+                    stop = True
+                    back = True
+                    break
+                if isBack(sub_answer):
+                    back = True
+                    break
+
+                commande = project["commande"] if sub_answer == "all" else sub_menu[sub_answer]
+                executeAnswer(project["path"], commande)
 
             project = None
             sub_menu = None
@@ -46,8 +51,13 @@ def loopCommande(commande_json_path):
             stop = True
             break
 
+def isExit(answer):
+    return answer in ["e", "exit", "q", "quit"]
 
-def execute_answer(path, commande):
+def isBack(answer):
+    return answer in ["b", "back"]
+
+def executeAnswer(path, commande):
     if isinstance(commande, list):
         for cmd in commande:
             lance_commande_cmd(path, cmd)
