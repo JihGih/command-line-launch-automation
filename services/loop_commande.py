@@ -72,16 +72,18 @@ def printTitle(title):
     print(f"============ {title} =============")
     print("===================================")
 
-def printCommandeAndGetAnswer(avaible_commande):
-    for i in avaible_commande:
-        print(f"{i}: {avaible_commande[i]}")
+def printCommandeAndGetAnswer(avaible_commande, print_commande=True):
+    if print_commande:
+        for i in avaible_commande:
+            print(f"{i}: {avaible_commande[i]}")
 
     answer = input("choose a commande: ")
     print("you choose: ", answer)
 
     if answer not in avaible_commande:
         print("commande not avaible")
-        return printCommandeAndGetAnswer(avaible_commande)
+        print_commande = False
+        return printCommandeAndGetAnswer(avaible_commande, print_commande)
     return answer
 
 def clear_console():
