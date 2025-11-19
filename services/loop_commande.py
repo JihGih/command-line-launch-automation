@@ -67,7 +67,6 @@ def executeAnswer(path, commande):
         lance_commande_cmd(path, commande)
 
 def printTitle(title):
-    clear_console()
     print("===================================")
     print(f"============ {title} =============")
     print("===================================")

@@ -1,7 +1,7 @@
 {
     "miasin_api": {
         "path": "C:/laragon/www/miasin_api",
-        "commande": ["symfony serve --listen-ip={ip}","php artisan reverb:start", "php artisan queue:work", "no_shell\"C:/Program Files/Git/git-bash.exe\""]
+        "commande": ["symfony serve --listen-ip={ip}","php artisan reverb:start --host={ip}", "php artisan queue:work", "no_shell\"C:/Program Files/Git/git-bash.exe\""]
     },
     "miasin_web": {
         "path": "C:/laragon/www/miasin_web",
