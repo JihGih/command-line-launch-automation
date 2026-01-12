@@ -58,3 +58,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [Portfolio](https://giarjah.vercel.app)
 - [Email](mailto:giarjah@gmail.com)
 - [link] (5%IZkfq=a<+_ksI03sdopin84964EFgdpgf_a)
+- ENCRYPTION_KEY_1=4f5b3a06e97620aea982c3cec4ef3574d702b3b632ce1110f727d319fa011cc0rg
+- ENCRYPTION_KEY_2=523016d6d886643b7ce3ff8d557af9ab75214dfa31a9d0d4f57b84072d01eb3aer
