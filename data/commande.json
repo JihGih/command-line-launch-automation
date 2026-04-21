@@ -1,14 +1,47 @@
 {
-    "miasin_api": {
+    "miasin_laravel": {
         "path": "C:/laragon/www/miasin_api",
-        "commande": ["symfony serve --listen-ip={ip}","php artisan reverb:start", "php artisan queue:work", "no_shell\"C:/Program Files/Git/git-bash.exe\""]
+        "commande": [
+            "php artisan serve --host={ip}",
+            "php artisan reverb:start --host={ip}",
+            "php artisan queue:work",
+            "no_shell\"C:/Program Files/Git/git-bash.exe\""
+        ]
+    },
+    "miasin_symfony": {
+        "path": "C:/laragon/www/miasin_api",
+        "commande": [
+            "symfony serve --listen-ip={ip}",
+            "php artisan reverb:start",
+            "php artisan queue:work",
+            "no_shell\"C:/Program Files/Git/git-bash.exe\""
+        ]
     },
     "miasin_web": {
         "path": "C:/laragon/www/miasin_web",
-        "commande": ["npm run dev", "no_shell\"C:/Program Files/Git/git-bash.exe\""]
+        "commande": [
+            "npm run dev",
+            "no_shell\"C:/Program Files/Git/git-bash.exe\""
+        ]
     },
-    "miasin_app": {
+    "miasin_app_local": {
         "path": "C:/laragon/www/miasin",
-        "commande": ["ionic serve", "no_shell\"C:/Program Files/Git/git-bash.exe\""]
+        "commande": [
+            "ionic serve",
+            "no_shell\"C:/Program Files/Git/git-bash.exe\""
+        ]
+    },
+    "miasin_app_ip_server": {
+        "path": "C:/laragon/www/miasin",
+        "commande": [
+            "ionic serve --host={ip}",
+            "no_shell\"C:/Program Files/Git/git-bash.exe\""
+        ]
+    },
+    "open_cmd": {
+        "path": "C:/Users/gg",
+        "commande": [
+            "cd {path}"
+        ]
     }
 }
