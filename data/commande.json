@@ -38,6 +38,13 @@
             "no_shell\"C:/Program Files/Git/git-bash.exe\""
         ]
     },
+    "miasin_flutter": {
+        "path": "C:/laragon/www/miasin_app",
+        "commande": [
+            "flutter run -d chrome",
+            "no_shell\"C:/Program Files/Git/git-bash.exe\""
+        ]
+    },
     "open_cmd": {
         "path": "C:/Users/gg",
         "commande": [
